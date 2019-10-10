@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div class="d-flex justify-content-center">
+    <h1>{{heading}}</h1>
+</div>
+
+<section>
+
+    {% for item in items %}
+    {% for purchase in purchases %}
+
+    {% if item.id == purchase.item_id %}
+    {% if purchase.buyer == current_user.name %}
+    <div class="row mt-5 mb-5 justify-content-center">
+        <div class="col-md-10">
+            <div class="media border p-3">
+                <img class="align-self-center mr-3" style="max-width: 120px" src="../{{item.image}}" alt="1080ti">
+                <div class="align-self-center media-body">
+                    <h5 class="mt-0">{{item.name}}</h5>
+                    <h6 class="mt-0">${{item.price}}</h6>
+                    <p>{{item.description}}</p>
+                    <a href="#" class="btn btn-primary">View Item</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% endif %}
+
+    {% endfor %}
+    {% endfor %}
+    <br>
+</section>
+
+{% endblock %}
