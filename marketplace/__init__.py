@@ -3,12 +3,17 @@ from flask import Flask
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
+from flask import render_template
 import os
 
 db = SQLAlchemy()
 
 # create a function that creates a web application
 # a web server will run this web application
+
+
+def pageNotFound(e):
+    return render_template('404.html'), 404
 
 
 def create_app():
@@ -18,15 +23,17 @@ def create_app():
     app.debug = True
     app.secret_key = 'utroutoru'
 
+    app.register_error_handler(404, pageNotFound)
+
     # set the app configuration data
 
-    #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///web_app.sqlite'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///web_app.sqlite'
 
     # initialize db with flask app
 
-    app.config.from_mapping(
-        SQLALCHEMY_DATABASE_URI=os.environ['DATABASE_URL']
-    )
+    # app.config.from_mapping(
+    #    SQLALCHEMY_DATABASE_URI=os.environ['DATABASE_URL']
+    # )
 
     db.init_app(app)
 

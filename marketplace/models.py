@@ -70,7 +70,7 @@ class Item(db.Model):
     # foreign
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     # relationships
-    enquiries = db.relationship('Enquiry', backref='item')
+
     bids = db.relationship('Bid', backref='item')
     purchased = db.relationship('Purchased_item', backref='item')
     status = db.relationship('Item_status', backref='item')

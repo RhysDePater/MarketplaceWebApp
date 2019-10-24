@@ -47,11 +47,39 @@ class CreationForm(FlaskForm):
     price = FloatField('Price', validators=[
         InputRequired('Please enter valid Price')])
     category = SelectField("Category", choices=[(
-        '1', 'CPU'), ('2', 'GPU'), ('3', 'CASE'), ('4', 'Peripherals'), ('5', 'Power Supply')])
+        'CPU', 'CPU'), ('GPU', 'GPU'), ('Case', 'Case'), ('Memory', 'Memory'), ('Motherboard', 'Motherboard'), ('CPU Cooler', 'CPU Cooler'), ('Storage', 'Storage'), ('Peripherals', 'Peripherals'), ('Power Supply', 'Power Supply')])
     description = TextAreaField("Description", validators=[
         InputRequired('Enter a Name')])
     quality = SelectField("Quality", choices=[(
-        '1', 'New'), ('2', 'Used/Excelent'), ('3', 'Used/Good'), ('4', 'Used/Moderate'), ('5', 'Used/Needs Repairs')])
+        'New', 'New'), ('Used/Excelent', 'Used/Excelent'), ('Used/Good', 'Used/Good'), ('Used/Moderate', 'Used/Moderate'), ('Used/Needs Repairs5', 'Used/Needs Repairs')])
     image = FileField("Product Image:", validators=[FileRequired(message='Image can not be empty'),
                                                     FileAllowed(ALLOWED_FILE, message='Only support png, jpg, JPG, PNG, bmp')])
     submit = SubmitField("Post Item")
+
+
+class EditForm(FlaskForm):
+    name = StringField("Item Title", validators=[
+                       InputRequired('Enter a Name')])
+    model = StringField("Item model", validators=[
+        InputRequired('Enter a model name')])
+    price = FloatField('Price', validators=[
+        InputRequired('Please enter valid Price')])
+    category = SelectField("Category", choices=[(
+        'CPU', 'CPU'), ('GPU', 'GPU'), ('Case', 'Case'), ('Memory', 'Memory'), ('Motherboard', 'Motherboard'), ('CPU Cooler', 'CPU Cooler'), ('Storage', 'Storage'), ('Peripherals', 'Peripherals'), ('Power Supply', 'Power Supply')])
+    description = TextAreaField("Description", validators=[
+        InputRequired('Enter a Name')])
+    quality = SelectField("Quality", choices=[(
+        'New', 'New'), ('Used/Excelent', 'Used/Excelent'), ('Used/Good', 'Used/Good'), ('Used/Moderate', 'Used/Moderate'), ('Used/Needs Repairs5', 'Used/Needs Repairs')])
+    image = FileField("Product Image:", validators=[FileAllowed(
+        ALLOWED_FILE, message='Only support png, jpg, JPG, PNG, bmp')])
+    submit = SubmitField("Edit")
+
+
+class searchForm(FlaskForm):
+    category = SelectField("Category", choices=[(
+        'CPU', 'CPU'), ('GPU', 'GPU'), ('Case', 'Case'), ('Memory', 'Memory'), ('Motherboard', 'Motherboard'), ('CPU Cooler', 'CPU Cooler'), ('Storage', 'Storage'), ('Peripherals', 'Peripherals'), ('Power Supply', 'Power Supply')])
+    submit = SubmitField("Search")
+
+
+class bidForm(FlaskForm):
+    submit = SubmitField("Place Bid")
