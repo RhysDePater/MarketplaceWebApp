@@ -3,7 +3,9 @@
 
 {% block content %}
 
-<p class="alert-info justify-content-center">{{ message }}</p>
+<p class="alert-info justify-content-center">
+    {{ message }}
+</p>
 
 <main class="container-fluid">
     <div class="d-flex mt-3 justify-content-center">
@@ -43,10 +45,37 @@
                         {% if bids == None %}
                         {% if current_user.id != item.user_id %}
                         {% if current_user.is_authenticated %}
-                        <form method="POST">
-                            {{ bid.hidden_tag()}}
-                            {{bid.submit(class="flex-shrink-1 btn btn-primary my-1")}}
-                        </form>
+
+                        <a href="./viewItem.html" class="btn btn-primary" data-toggle="modal" data-target="#Sell">Place
+                            Bid</a>
+                        <!-- button trigger modal -->
+                        </button>
+                        <div class="modal fade" id="Sell" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalCenterTitle">Are you sure?
+                                        </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Are you sure you want to bid on {{item.name}}?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <form method="POST">
+                                            {{ bid.hidden_tag()}}
+                                            {{bid.submit(class="flex-shrink-1 btn btn-primary my-1")}}
+
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">No</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         {% else %}
                         <a href="./viewItem.html" class="btn btn-primary" data-toggle="modal"
                             data-target="#exampleModalCenter">Place

@@ -69,29 +69,31 @@ def soldItem(id):
 def manage(id):
 
     users = User.query.all()
-    item = Item.query.filter_by(id=id).first()
+    item = Item.query.filter_by(id=id, purchased=None).first()
     bids = Bid.query.all()
+    form = None
 
     # form.name.name = Item['name']
     # form.model.data = Item['model']
-    if request.method == 'GET':
-        form = EditForm(formdata=MultiDict(
-            {'name': item.name, 'price': item.price, 'category': item.category, 'model': item.model, 'description': item.description, 'quality': item.quality, 'image': item.image}))
-    else:
-        form = EditForm()
-    if request.method == 'POST' and form.validate():
-        item.name = form.name.data
-        item.price = form.price.data
-        item.category = form.category.data
-        item.model = form.model.data
-        item.description = form.description.data
-        item.quality = form.quality.data
-        try:
-            item.image = checkUploadFile(form)
-        except:
-            item.image = item.image
-        db.session.commit()
-        return render_template('itemManage.html', form=form, item=item, users=users, bids=bids)
+    if item != None:
+        if request.method == 'GET':
+            form = EditForm(formdata=MultiDict(
+                {'name': item.name, 'price': item.price, 'category': item.category, 'model': item.model, 'description': item.description, 'quality': item.quality, 'image': item.image}))
+        else:
+            form = EditForm()
+        if request.method == 'POST' and form.validate():
+            item.name = form.name.data
+            item.price = form.price.data
+            item.category = form.category.data
+            item.model = form.model.data
+            item.description = form.description.data
+            item.quality = form.quality.data
+            try:
+                item.image = checkUploadFile(form)
+            except:
+                item.image = item.image
+            db.session.commit()
+            return render_template('itemManage.html', form=form, item=item, users=users, bids=bids)
     return render_template('itemManage.html', form=form, item=item, users=users, bids=bids)
 
 

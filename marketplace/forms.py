@@ -82,4 +82,4 @@ class searchForm(FlaskForm):
 
 
 class bidForm(FlaskForm):
-    submit = SubmitField("Place Bid")
+    submit = SubmitField("Yes")

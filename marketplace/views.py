@@ -16,11 +16,11 @@ def index():
         cate = formSearch.category.data
 
         items1 = Item.query.filter_by(purchased=None, category=cate).order_by(
-            desc(Item.created_date)).all()
-        return render_template('index.html', type="view", items=items1, formSearch=formSearch, heading='Items For Sale')
+            desc(Item.id)).all()
+        return render_template('items.html', type="view", items=items1, formSearch=formSearch, heading='Items For Sale - ' + cate)
 
     items = Item.query.filter_by(
-        purchased=None).order_by(desc(Item.created_date)).all()
+        purchased=None).order_by(desc(Item.id)).all()
 
     return render_template('index.html', type="view", items=items, formSearch=formSearch, heading='Items For Sale')
 
@@ -34,13 +34,13 @@ def selling():
         cate = formSearch.category.data
 
         items1 = Item.query.filter_by(purchased=None, category=cate).order_by(
-            desc(Item.created_date)).all()
-        return render_template('index.html', type="view", items=items1, formSearch=formSearch, heading='Items For Sale')
+            desc(Item.id)).all()
+        return render_template('items.html', type="view", items=items1, formSearch=formSearch, heading='Items For Sale - ' + cate)
 
     items = Item.query.filter_by(
-        user_id=session['user_id'], purchased=None).order_by(desc(Item.created_date)).all()
+        user_id=session['user_id'], purchased=None).order_by(desc(Item.id)).all()
 
-    return render_template('index.html', type="selling", items=items, formSearch=formSearch, heading="Items You Have For Sale")
+    return render_template('items.html', type="selling", items=items, formSearch=formSearch, heading="Items You Have For Sale")
 
 
 @bp.route('/sold', methods=['GET', 'POST'])
@@ -52,13 +52,13 @@ def sold():
         cate = formSearch.category.data
 
         items1 = Item.query.filter_by(purchased=None, category=cate).order_by(
-            desc(Item.created_date)).all()
-        return render_template('index.html', type="view", items=items1, formSearch=formSearch, heading='Items For Sale')
+            desc(Item.id)).all()
+        return render_template('items.html', type="view", items=items1, formSearch=formSearch, heading='Items For Sale - ' + cate)
 
     items = Item.query.filter(
-        Item.user_id == session['user_id'], Item.purchased != None).order_by(desc(Item.created_date)).all()
+        Item.user_id == session['user_id'], Item.purchased != None).order_by(desc(Item.id)).all()
 
-    return render_template('index.html', type="sold", items=items, formSearch=formSearch, heading="Items You Have Sold")
+    return render_template('items.html', type="sold", items=items, formSearch=formSearch, heading="Items You Have Sold")
 
 
 @bp.route('/bid', methods=['GET', 'POST'])
@@ -70,11 +70,11 @@ def bid():
         cate = formSearch.category.data
 
         items1 = Item.query.filter_by(purchased=None, category=cate).order_by(
-            desc(Item.created_date)).all()
-        return render_template('index.html', type="view", items=items1, formSearch=formSearch, heading='Items For Sale')
+            desc(Item.id)).all()
+        return render_template('items.html', type="view", items=items1, formSearch=formSearch, heading='Items For Sale - ' + cate)
 
     items = Item.query.filter(Item.bids != None, Item.purchased == None).order_by(
-        desc(Item.created_date)).all()
+        desc(Item.id)).all()
     bids = Bid.query.all()
 
     return render_template('bid.html', items=items, formSearch=formSearch, bids=bids, heading="Items You Have Bidded On")
@@ -89,10 +89,11 @@ def purchases():
         cate = formSearch.category.data
 
         items1 = Item.query.filter_by(purchased=None, category=cate).order_by(
-            desc(Item.created_date)).all()
-        return render_template('index.html', type="view", items=items1, formSearch=formSearch, heading='Items For Sale')
+            desc(Item.id)).all()
+        return render_template('items.html', type="view", items=items1, formSearch=formSearch, heading='Items For Sale - ' + cate)
+
     items = Item.query.filter(Item.purchased != None).order_by(
-        desc(Item.created_date)).all()
+        desc(Item.id)).all()
     purchases = Purchased_item.query.all()
 
     return render_template('purchases.html', items=items, formSearch=formSearch, purchases=purchases, heading="Items You Have Purchased")
