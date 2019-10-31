@@ -99,11 +99,12 @@
                         Bidder: {{bid.bidder_name}}, {{bid.bidder_email}}, {{bid.created_date}}
                     </div>
                     <div class="col-auto">
-                        <a href="./viewItem.html" class="btn btn-primary" data-toggle="modal" data-target="#Sell">Sell
+                        <a href="./viewItem.html" class="btn btn-primary" data-toggle="modal"
+                            data-target="#Sell{{bid.bidder_name}}">Sell
                             Item to {{bid.bidder_name}}</a>
                         <!-- button trigger modal -->
                         </button>
-                        <div class="modal fade" id="Sell" tabindex="-1" role="dialog"
+                        <div class="modal fade" id="Sell{{bid.bidder_name}}" tabindex="-1" role="dialog"
                             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">

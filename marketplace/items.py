@@ -87,10 +87,10 @@ def soldItem(id):
     bid = None
 
     if item != None:
-        # pull the bid info from the db
-        bid = Bid.query.filter_by(item_id=id).first()
         # pull the items purchase info from the db
-        purchase = Purchased_item.query.filter_by(bid_id=bid.id).first()
+        purchase = Purchased_item.query.filter_by(item_id=id).first()
+        # pull the bid info from the db
+        bid = Bid.query.filter_by(id=purchase.bid_id).first()
         # pull every user info
         users = User.query.all()
 

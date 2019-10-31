@@ -27,13 +27,13 @@ def create_app():
 
     # set the app configuration data
 
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///web_app.sqlite'
+    #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///web_app.sqlite'
 
     # initialize db with flask app
 
-    # app.config.from_mapping(
-    #    SQLALCHEMY_DATABASE_URI=os.environ['DATABASE_URL']
-    # )
+    app.config.from_mapping(
+        SQLALCHEMY_DATABASE_URI=os.environ['DATABASE_URL']
+    )
 
     db.init_app(app)
 
