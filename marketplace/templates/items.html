@@ -19,38 +19,40 @@
 {% endblock %}
 
 {% block content %}
-<div class="d-flex justify-content-center">
-    <h1>{{heading}}</h1>
-</div>
+<main class="container-fluid">
+    <div class="d-flex justify-content-center">
+        <h1>{{heading}}</h1>
+    </div>
 
-<section>
+    <section>
 
-    {% for item in items %}
+        {% for item in items %}
 
-    <div class="row mt-5 mb-5 justify-content-center">
-        <div class="col-md-10">
-            <div class="media border p-3">
-                <img class="align-self-center mr-3" style="max-width: 120px" src="../{{item.image}}" alt="1080ti">
-                <div class="align-self-center media-body">
-                    <h5 class="mt-0">{{item.name}}</h5>
-                    <h6 class="mt-0">${{item.price}}</h6>
-                    <p>{{item.description}}</p>
-                    {% if type == "view" %}
-                    <a href="/viewItem/{{item.id}}" class="btn btn-primary">View Item</a>
-                    {% endif %}
-                    {% if type == "sold" %}
-                    <a href="/soldItem/{{item.id}}" class="btn btn-primary">View Sold Item</a>
-                    {% endif %}
-                    {% if type == "selling" %}
-                    <a href="/manageItem/{{item.id}}" class="btn btn-primary">Manage Item</a>
-                    {% endif %}
+        <div class="row mt-5 mb-5 justify-content-center">
+            <div class="col-md-10">
+                <div class="media border p-3">
+                    <img class="align-self-center mr-3" style="max-width: 120px" src="../{{item.image}}" alt="1080ti">
+                    <div class="align-self-center media-body">
+                        <h5 class="mt-0">{{item.name}}</h5>
+                        <h6 class="mt-0">${{item.price}}</h6>
+                        <p>{{item.description}}</p>
+                        {% if type == "view" %}
+                        <a href="/viewItem/{{item.id}}" class="btn btn-primary">View Item</a>
+                        {% endif %}
+                        {% if type == "sold" %}
+                        <a href="/soldItem/{{item.id}}" class="btn btn-primary">View Sold Item</a>
+                        {% endif %}
+                        {% if type == "selling" %}
+                        <a href="/manageItem/{{item.id}}" class="btn btn-primary">Manage Item</a>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    {% endfor %}
-    <br>
-</section>
+        {% endfor %}
+        <br>
+    </section>
+</main>
 
 {% endblock %}

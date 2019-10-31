@@ -8,6 +8,12 @@
 </p>
 
 <main class="container-fluid">
+    {% if item == None %}
+    <div class="d-flex mt-3 justify-content-center">
+        <h1>Page Unavailable</h1>
+    </div>
+    <br>
+    {% else %}
     <div class="d-flex mt-3 justify-content-center">
         <h1>{{item.name}}</h1>
     </div>
@@ -195,6 +201,7 @@
             </div>
         </div>
     </div>
+    {% endif %}
 </main> <!-- End main content area -->
 
 

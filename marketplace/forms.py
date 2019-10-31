@@ -5,7 +5,7 @@ from wtforms.validators import InputRequired, Length, Email, EqualTo, NumberRang
 from flask_wtf.file import FileField, FileAllowed, FileRequired
 
 
-# creates the login information
+# creates the login form
 class LoginForm(FlaskForm):
     name = StringField("User Name", validators=[
         InputRequired('Enter user name')])
@@ -13,10 +13,8 @@ class LoginForm(FlaskForm):
         InputRequired('Enter user password')])
     submit = SubmitField("Login")
 
- # this is the registration form
 
-
-class RegisterForm(FlaskForm):
+class RegisterForm(FlaskForm):  # creates the register form
     name = StringField("User Name", validators=[
                        InputRequired('Enter a Name')])
     emailid = StringField('Email Address', validators=[
@@ -39,7 +37,7 @@ class RegisterForm(FlaskForm):
 ALLOWED_FILE = {'png', 'jpg', 'JPG', 'PNG', 'bmp'}
 
 
-class CreationForm(FlaskForm):
+class CreationForm(FlaskForm):  # creates the item upload form
     name = StringField("Item Title", validators=[
                        InputRequired('Enter a Name')])
     model = StringField("Item model", validators=[
@@ -75,11 +73,11 @@ class EditForm(FlaskForm):
     submit = SubmitField("Edit")
 
 
-class searchForm(FlaskForm):
+class searchForm(FlaskForm):  # creates the form for the search field
     category = SelectField("Category", choices=[(
         'CPU', 'CPU'), ('GPU', 'GPU'), ('Case', 'Case'), ('Memory', 'Memory'), ('Motherboard', 'Motherboard'), ('CPU Cooler', 'CPU Cooler'), ('Storage', 'Storage'), ('Peripherals', 'Peripherals'), ('Power Supply', 'Power Supply')])
     submit = SubmitField("Search")
 
 
-class bidForm(FlaskForm):
+class bidForm(FlaskForm):  # creates the form for the bid button
     submit = SubmitField("Yes")

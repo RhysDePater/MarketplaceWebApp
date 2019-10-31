@@ -14,6 +14,12 @@
 <p class="alert-info justify-content-center">{{ message }}</li>
 
     <main class="container-fluid">
+        {% if item == None %}
+        <div class="d-flex mt-3 justify-content-center">
+            <h1>Page Unavailable</h1>
+        </div>
+        <br>
+        {% else %}
         <div class="d-flex mt-3 justify-content-center">
             <h1>Sold Item: {{item.name}}</h1>
         </div>
@@ -87,6 +93,7 @@
                 </div>
             </div>
         </div>
+        {% endif %}
     </main> <!-- End main content area -->
 
 
